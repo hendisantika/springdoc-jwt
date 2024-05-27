@@ -39,7 +39,7 @@ public class WebSecurityConfig {
 
     //@Autowired
     //private JwtAuthenticationFilter jwtAuthenticationFilter;
-    public final static String[] PUBLIC_REQUEST_MATCHERS = {"/api/v1/auth/**", "/api-docs/**", "/swagger-ui/**"};
+    public final static String[] PUBLIC_REQUEST_MATCHERS = {"/api/v1/auth/**", "/api-docs/**", "/v3/api-docs", "/v3/api-docs/**", "/swagger-ui", "/swagger-ui/**"};
 
     @Bean
     @Order(1000)
