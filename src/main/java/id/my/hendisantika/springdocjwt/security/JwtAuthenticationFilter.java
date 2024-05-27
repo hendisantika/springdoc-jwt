@@ -1,5 +1,6 @@
 package id.my.hendisantika.springdocjwt.security;
 
+import id.my.hendisantika.springdocjwt.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,6 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtService jwtService;
+
     @Autowired
     private UserDetailsService userDetailsService;
 
