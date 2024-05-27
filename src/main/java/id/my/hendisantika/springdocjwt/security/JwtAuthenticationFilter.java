@@ -1,5 +1,6 @@
 package id.my.hendisantika.springdocjwt.security;
 
+import id.my.hendisantika.springdocjwt.config.WebSecurityConfig;
 import id.my.hendisantika.springdocjwt.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
