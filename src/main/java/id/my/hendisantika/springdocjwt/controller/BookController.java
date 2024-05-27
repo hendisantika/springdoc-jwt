@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : springdoc-jwt
@@ -43,6 +46,18 @@ public class BookController {
         book1.setAuthor("test");
         book1.setBookName("testBook");
         return book1;
+    }
+
+    @GetMapping("/")
+    public Collection<Book> findBooks() {
+        Book book1 = new Book();
+        book1.setAuthor("test");
+        book1.setBookName("testBook");
+
+        Book book2 = new Book();
+        book2.setAuthor("test");
+        book2.setBookName("testBook2");
+        return List.of(new Book[]{book1, book2});
     }
 
 }
