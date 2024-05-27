@@ -75,4 +75,64 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
+    //	@Override
+    //	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
+    //			throws IOException, ServletException {
+    //		final String authHeader = ((HttpServletRequest) request).getHeader("Authorization");
+    //		final String jwt;
+    //		final String userEmail;
+    //
+    //		String path = ((HttpServletRequest) request).getRequestURI();
+    //		String[] allowedPaths = WebSecurityConfig.PUBLIC_REQUEST_MATCHERS;
+    //		for (var allowedPath : allowedPaths) {
+    //			allowedPath = allowedPath.replace("*", "");
+    //			if (path.startsWith(allowedPath)) {
+    //				filterChain.doFilter(request, response);
+    //				return;
+    //			}
+    //		}
+    //
+    //		if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
+    //			filterChain.doFilter(request, response);
+    //			return;
+    //		}
+    //		jwt = authHeader.substring(7);
+    //		userEmail = jwtService.extractUsername(jwt);
+    //		if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+    //			UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+    //			if (jwtService.isTokenValid(jwt, userDetails)) {
+    //				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+    //						userDetails,
+    //						null,
+    //						userDetails.getAuthorities()
+    //						);
+    //				authToken.setDetails(
+    //						new WebAuthenticationDetailsSource().buildDetails((HttpServletRequest) request)
+    //						);
+    //				SecurityContextHolder.getContext().setAuthentication(authToken);
+    //			}
+    //		}
+    //		filterChain.doFilter(request, response);
+    //
+    //	}
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request)
+            throws ServletException {
+        //String path = request.getRequestURI();
+        //return "/health".equals(path);
+
+        String path = request.getRequestURI();
+        String[] allowedPaths = WebSecurityConfig.PUBLIC_REQUEST_MATCHERS;
+        for (var allowedPath : allowedPaths) {
+            allowedPath = allowedPath.replace("/*", "");
+            allowedPath = allowedPath.replace("/**", "");
+            if (path.contains(allowedPath)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
