@@ -63,3 +63,40 @@ A major disadvantage is that if a JWT key is compromised, the entire system will
 ### Token Authentication Flow
 
 Trying to call a secured API, will result in a Forbidden 403 response.
+
+![403](img/403.png "403")
+
+Let's go through the process …
+
+Step 1. Call /authenticate method with input
+
+```shell
+{
+  "email": "yuji",
+  "password": "password"
+}
+```
+
+A successful response with correct login credentials should give the expected JWT token. Sample below…
+
+```shell
+{
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNjc2NjU4MDc3LCJleHAiOjE2NzY2NTk1MTd9.m0EdnpStRzndsLaOki29OOuxPSFnkdHP-KPi80ftqrc"
+}
+```
+
+Step 2. Click Authorize button. This will add JWT token as a Bearer Authentication token in each request’s header
+
+Authenticate
+
+![Authenticate](img/authenticate.png "Authenticate")
+
+![Authenticate](img/authenticate2.png "Authenticate")
+
+![Authorize](img/authorize.png "Authorize")
+
+Step 3. Call secured API to get the information of a book
+
+![200](img/200.png "Call secured API to get the information of a book")
+
+As it is shown above, there is a success response 200 along with the Book JSON object.
