@@ -58,3 +58,8 @@ A major disadvantage is that if a JWT key is compromised, the entire system will
 > (formerly known as Swagger) Specification, with the visual documentation making it easy for back end implementation
 > and client side consumption.²
 
+![Swagger UI](img/Swagger-UI.png "Swagger UI")
+
+### Token Authentication Flow
+
+Trying to call a secured API, will result in a Forbidden 403 response.
